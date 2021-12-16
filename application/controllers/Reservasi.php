@@ -12,8 +12,8 @@ class Reservasi extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        // $this->API = "http://simrs.rsukotabanjar.co.id/ws-rsubanjar";
-        $this->API = "http://172.16.0.3/wg-rsubanjar";
+         $this->API = "http://simrs.rsukotabanjar.co.id/wg-rsubanjar";
+        // $this->API = "http://172.16.0.3/wg-rsubanjar";
         // $this->API = "http://172.16.0.3/wg-rsubanjar_dani";
         // $this->API = "http://localhost/wg-rsubanjar";
         $this->load->library('session');
@@ -644,14 +644,13 @@ class Reservasi extends CI_Controller
         // configurasi library email
         $config = [
             'protocol'  => 'smtp',
-            'smtp_host' => 'ssl://smtp.googlemail.com', //(ganti dengan nama : domain anda) 
-            'smtp_user' => 'simrsrsukotabanjar@gmail.com',
-            'smtp_pass' => 'Simrs321',
-            'smtp_port' => 465, //(ganti : 25)
+            'smtp_host' => 'ssl://rsukotabanjar.co.id',
+            'smtp_user' => 'regonline@rsukotabanjar.co.id',
+            'smtp_pass' => 'RegOnline3',
+            'smtp_port' => 465, 
             'mailtype'  => 'html',
             'charset'   => 'utf-8',
             'newline'   => "\r\n"
-            // 'smtp_timeout'=> "5"
         ];
 
 
@@ -659,7 +658,7 @@ class Reservasi extends CI_Controller
         $this->email->initialize($config);
 
         // send email
-        $this->email->from('simrsrsukotabanjar@gmail.com', 'RSU BANJAR REGISTRASI ONLINE');
+        $this->email->from('regonline@rsukotabanjar.co.id', 'RSU BANJAR REGISTRASI ONLINE');
         $this->email->to($email);
         $this->email->subject($subject);
         $this->email->message($mesage);
@@ -943,6 +942,7 @@ class Reservasi extends CI_Controller
     function GetHariLibur()
     {
         $jumlahhari = $this->input->post('jumlahhari');
+       
         // $jumlahhari     = 30;
 
         // date_default_timezone_set("Asia/Jakarta");
@@ -951,7 +951,7 @@ class Reservasi extends CI_Controller
         // var_dump(count($array["items"]));
         // var_dump($array["items"][0]["start"]["date"]);
         // var_dump(array_search('2020-08-17', array_column($array["items"][1], 'date')));
-        // die;
+        
 
         $tglawal        = date('Y-m-d');
 
@@ -989,8 +989,8 @@ class Reservasi extends CI_Controller
         //     }
         //     $a++;
         // }
-        // var_dump($jumlahhari);
-        // die;
+         //var_dump($hasiltanggal);
+         //die;
 
         echo json_encode($hasiltanggal);
     }

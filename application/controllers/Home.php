@@ -28,8 +28,8 @@ class Home extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        // $this->API = "http://simrs.rsukotabanjar.co.id/ws-rsubanjar";
-        $this->API = "http://172.16.0.3/wg-rsubanjar";
+        $this->API = "http://simrs.rsukotabanjar.co.id/wg-rsubanjar";
+        //$this->API = "http://172.16.0.3/wg-rsubanjar";
         // $this->API = "http://172.16.0.3/wg-rsubanjar_dani";
         // $this->API = "http://localhost/wg-rsubanjar";
         $this->load->library('session');
@@ -196,9 +196,9 @@ class Home extends CI_Controller
         if (is_array($file_data)) {
             $config = [
                 'protocol'  => 'smtp',
-                'smtp_host' => 'ssl://smtp.googlemail.com',
-                'smtp_user' => 'saranregistrasionline@gmail.com',
-                'smtp_pass' => 'Simrs321',
+                'smtp_host' => 'ssl://rsukotabanjar.co.id',
+                'smtp_user' => 'regonline@rsukotabanjar.co.id',
+                'smtp_pass' => 'RegOnline3',
                 'smtp_port' => 465,
                 'mailtype'  => 'html',
                 'charset'   => 'utf-8',
@@ -210,7 +210,7 @@ class Home extends CI_Controller
             $this->email->initialize($config);
 
             // send email
-            $this->email->from('saranregistrasionline@gmail.com', $name);
+            $this->email->from('regonline@rsukotabanjar.co.id', $name);
             $this->email->to("simrsrsukotabanjar@gmail.com");
             $this->email->subject($subject);
             $this->email->message($pesan);

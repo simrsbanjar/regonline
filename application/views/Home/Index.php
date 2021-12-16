@@ -729,103 +729,55 @@
         <div class="container">
 
             <div class="section-title">
-                <h2>Kontak & Saran</h2>
+                <h2>Kontak</h2>
             </div>
             <!-- Div Buka row -->
-            <div class="row">
-                <div class="row">
-                    <div class="col-lg-7 col-sm-7">
-                        <div class="services-title">
-                            <h2>Kontak</h2>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-5 mt-4">
-                                <div class="icon-box">
-                                    <div class="icon"><i class="icofont-email"></i></div>
-                                    <h4><span>Email Kami</span></h4>
-                                    <a href="mailto:contact@example.com">
-                                        <span>rsu_kotabanjar@yahoo.co.id</span>
-                                        <br>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-lg-5 mt-4">
-                                <div class="icon-box">
-                                    <div class="icon"><i class="icofont-ui-dial-phone"></i></div>
-                                    <h4><span>Telpon</span></h4>
-                                    <a href="tel:0265741032">
-                                        <span>0265-741032</span>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-lg-5 mt-4">
-                                <div class="icon-box">
-                                    <div class="icon"><i class="icofont-dna-alt-2"></i></div>
-                                    <h4><span>Ponek 24 Jam</span></h4>
-                                    <a href="tel:0265741032">
-                                        <span>0265-7482204</span>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-lg-5 mt-4">
-                                <div class="icon-box">
-                                    <div class="icon"><i class="icofont-fax"></i></div>
-                                    <h4><span>Fax</span></h4>
-                                    <a href="tel:02657482204 ">
-                                        <span>0265744730</span>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-lg-5 mt-4">
-                                <div class="icon-box">
-                                    <div class="icon"><i class="icofont-whatsapp"></i></div>
-                                    <h4><span>WhatsApp (Only Chat)</span></h4>
-                                    <a href="https://api.whatsapp.com/send?phone=628112111146" target="_blank">
-                                        <span>08112111146</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-4 mt-4">
+                    <div class="icon-box">
+                        <div class="icon"><i class="icofont-email"></i></div>
+                        <h4><span>Email Kami</span></h4>
+                        <a href="mailto:contact@example.com">
+                            <span>rsu_kotabanjar@yahoo.co.id</span>
+                            <br>
+                        </a>
                     </div>
-                    <div class="col-lg-5 col-sm-6">
-                        <div class="services-title">
-                            <h2>Saran</h2>
-                        </div>
-                        <br>
+                </div>
+                <div class="col-lg-4 mt-4">
+                    <div class="icon-box">
+                        <div class="icon"><i class="icofont-ui-dial-phone"></i></div>
+                        <h4><span>Telpon</span></h4>
+                        <a href="tel:0265741032">
+                            <span>0265-741032</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 mt-4">
+                    <div class="icon-box">
+                        <div class="icon"><i class="icofont-dna-alt-2"></i></div>
+                        <h4><span>Ponek 24 Jam</span></h4>
+                        <a href="tel:0265741032">
+                            <span>0265-7482204</span>
+                        </a>
+                    </div>
+                </div>
 
-                        <form action="<?= base_url(); ?>Home/KirimEmail" method="post" role="form" class="formphp-email" enctype="multipart/form-data">
-                            <div class="form-row">
-                                <div class="col-md-6 form-group">
-                                    <input type="text" name="name" class="form-control" id="name" placeholder="Masukkan Nama" data-rule="minlen:4" data-msg="Silahkan masukan nama anda" />
-                                    <!-- <div class="validate"></div> -->
-                                </div>
-                                <div class="col-md-6 form-group">
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="Isikan Email" data-rule="email" data-msg="Silahkan masukan email yang valid" />
-                                    <!-- <div class="validate"></div> -->
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Silahkan masukan subjek" />
-                                <!-- <div class="validate"></div> -->
-                            </div>
-                            <div class=" form-group">
-                                <textarea class="form-control" name="message" id="message" rows="5" data-rule="required" data-msg="Masukan pesan anda" placeholder="Masukkan Pesan"></textarea>
-                                <!-- <div class="validate"></div> -->
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleFormControlFile1">Upload Gambar</label>
-                                <input type="file" accept=".png, .jpg, .jpeg" class="form-control-file" id="attachment" name="attachment">
-                            </div>
-                            <!-- <div class="mb-3">
-                                <div class="loading">Loading</div>
-                                <div class="error-message"></div>
-                                <div class="sent-message">Pesan Terkirim. Terimakasih!</div>
-                            </div> -->
-                            <div class="text-center"><button type="submit" disabled id="btnkirim">Kirim</button></div>
-                        </form>
-                        <!-- <div class=" text-center">
-                                    <button id="btnkirim" type="button" onclick="kirimpesan()" class="btn btn-sm btn-primary">Kirim</button>
-                            </div> -->
+                <div class="col-lg-4 mt-4">
+                    <div class="icon-box">
+                        <div class="icon"><i class="icofont-whatsapp"></i></div>
+                        <h4><span>WhatsApp (Only Chat)</span></h4>
+                        <a href="https://api.whatsapp.com/send?phone=628112111146" target="_blank">
+                            <span>08112111146</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 mt-4">
+                    <div class="icon-box">
+                        <div class="icon"><i class="icofont-fax"></i></div>
+                        <h4><span>Fax</span></h4>
+                        <a href="tel:02657482204 ">
+                            <span>0265744730</span>
+                        </a>
                     </div>
                 </div>
             </div>
