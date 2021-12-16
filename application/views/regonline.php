@@ -17,7 +17,7 @@
     <!-- <section id="featuresok" class="featuresok"> -->
     <div class="container">
 
-        <input type="hidden" name="reservasi" id="reservasi" value="1">
+        <input type="hidden" name="regonline" id="regonline" value="1">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb" id="stepprogress">
                 <!-- <li class="breadcrumb-item">Cara Bayar</a></li>
@@ -319,14 +319,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-header bg-primary  text-white" id="headerreservasi">
+                            <div class="card-header bg-primary  text-white" id="headerregonline">
                                 Data Pendaftaran
                                 <div class="card-footer" style="text-align: center; background-color: white; font-size: 25px;">
                                     <b id="polifaskes" class="blink">Poli Rujukan :</b>
                                 </div>
                             </div>
 
-                            <div class="card-body" id="isireservasi">
+                            <div class="card-body" id="isiregonline">
                                 <input type="hidden" name="nilai" id="nilai" value="1">
                                 <div class="row">
                                     <div class="col-md-4">
@@ -692,10 +692,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-header bg-primary  text-white" id="headerreservasi2">
+                            <div class="card-header bg-primary  text-white" id="headerregonline2">
                                 Data Pendaftaran
                             </div>
-                            <div class="card-body" id="isireservasi2">
+                            <div class="card-body" id="isiregonline2">
                                 <input type="hidden" name="nilai" id="nilai" value="1">
                                 <div class="row">
                                     <div class="col-md-4">
@@ -1097,10 +1097,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-header bg-primary  text-white" id="headerreservasi3">
+                            <div class="card-header bg-primary  text-white" id="headerregonline3">
                                 Data Pendaftaran
                             </div>
-                            <div class="card-body" id="isireservasi3">
+                            <div class="card-body" id="isiregonline3">
                                 <input type="hidden" name="nilai3" id="nilai3" value="1">
                                 <div class="row">
                                     <div class="col-md-4">

@@ -7,7 +7,7 @@ function AmbilDataPasienBPJS() {
     var norm = $('#norm').val();
 
     $.ajax({
-        url: "Reservasi/AmbilDataPasienBPJS",
+        url: "regonline/AmbilDataPasienBPJS",
         method: "POST",
         data: {
             "nopeserta": nopesertaparm
@@ -42,7 +42,7 @@ function AmbilDataPasienBPJS() {
                     var notelppasien = data.hasil['telepon'];
                     $('#polifaskes').text('Poli Rujukan : ' + data.hasil['nmpoli']);
                     $.ajax({
-                        url: "Reservasi/GetPasienLama",
+                        url: "regonline/GetPasienLama",
                         method: "POST",
                         data: {
                             "nocm": norm,

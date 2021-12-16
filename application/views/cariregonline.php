@@ -27,7 +27,7 @@
                     Cari Data Pendaftaran
                 </div>
                 <div class="card-body card-block">
-                    <input type="hidden" name="reservasi" id="reservasi" value="2">
+                    <input type="hidden" name="regonline" id="regonline" value="2">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12">

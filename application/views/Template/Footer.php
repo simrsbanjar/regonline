@@ -489,7 +489,7 @@
     //     var hasil = '';
     //     var jumlah = 0;
     //     $.ajax({
-    //         url: "Reservasi/GetHariLibur",
+    //         url: "regonline/GetHariLibur",
     //         data: {
     //             "jumlahhari": 7 + daycount()
     //         },
@@ -561,7 +561,7 @@
     //     var norm = $('#norm').val();
 
     //     $.ajax({
-    //         url: "Reservasi/AmbilDataPasienBPJS",
+    //         url: "regonline/AmbilDataPasienBPJS",
     //         method: "POST",
     //         data: {
     //             "nopeserta": nopesertaparm
@@ -596,7 +596,7 @@
     //                     var notelppasien = data.hasil['telepon'];
     //                     $('#polifaskes').text('Poli Rujukan : ' + data.hasil['nmpoli']);
     //                     $.ajax({
-    //                         url: "Reservasi/GetPasienLama",
+    //                         url: "regonline/GetPasienLama",
     //                         method: "POST",
     //                         data: {
     //                             "nocm": norm,
@@ -869,7 +869,7 @@
         }
         var kelamin = $('#kelamin' + numtab).val();
         $.ajax({
-            url: "Reservasi/hitung_umur",
+            url: "regonline/hitung_umur",
             method: "POST",
             data: {
                 "tgllahir": tgllahir
@@ -892,8 +892,8 @@
     }
 
     function hidetab1() {
-        $("#headerreservasi").hide();
-        $("#isireservasi").hide();
+        $("#headerregonline").hide();
+        $("#isiregonline").hide();
         $("#headerdatapasien").hide();
         $("#isidatapasien").hide();
         $("#cardfooter").hide();
@@ -908,8 +908,8 @@
         $("#pasienbaru").hide();
         $("#headerdatapasien2").hide();
         $("#isidatapasien2").hide();
-        $("#headerreservasi2").hide();
-        $("#isireservasi2").hide();
+        $("#headerregonline2").hide();
+        $("#isiregonline2").hide();
         $("#btnkembali2").hide();
         $("#btnlanjut2").hide();
         $("#carddata2").hide();
@@ -920,8 +920,8 @@
         $("#pasienlama").show();
         $("#pasienbaru").hide();
         $("#isidatapasien3").hide();
-        $("#headerreservasi3").hide();
-        $("#isireservasi3").hide();
+        $("#headerregonline3").hide();
+        $("#isiregonline3").hide();
         $("#btnkembali3").hide();
         $("#btnlanjut3").hide();
         $("#carddata3").hide();
@@ -1011,7 +1011,7 @@
             numtab = '3';
         }
 
-        // source = 1 dari cari reservasi, source = 2 dari simpan reservasi 
+        // source = 1 dari cari regonline, source = 2 dari simpan regonline 
         if (source == '1') {
             var id = $('#email').text();
             var nobooking = $('#kodebooking').text();
@@ -1056,7 +1056,7 @@
                 LoadingPopup('Mohon Tunggu', 'Sedang Mengunduh Data.....');
 
                 $.ajax({
-                    url: "CariReservasi/Cetak",
+                    url: "cariregonline/Cetak",
                     method: "POST",
                     data: {
                         "email": id,
@@ -1081,7 +1081,7 @@
                             a.remove();
 
                             $.ajax({
-                                url: "CariReservasi/RemoveFile",
+                                url: "cariregonline/RemoveFile",
                                 method: "POST",
                                 data: {
                                     "kodebooking": nobooking
@@ -1151,7 +1151,7 @@
             $("#loading").addClass("overlay");
             $('#loading').fadeIn();
             $.ajax({
-                url: "CariReservasi/GetBookingPasien",
+                url: "cariregonline/GetBookingPasien",
                 method: "POST",
                 data: {
                     "nopendaftaran": nopendaftaran,
@@ -1251,16 +1251,16 @@
             $("#pasienbaru" + numtab).hide();
             $("#headerdatapasien" + numtab).show();
             $("#isidatapasien" + numtab).show();
-            $("#headerreservasi" + numtab).hide();
-            $("#isireservasi" + numtab).hide();
+            $("#headerregonline" + numtab).hide();
+            $("#isiregonline" + numtab).hide();
             $("#btnkembali" + numtab).show();
             $("#btnlanjut" + numtab).show();
             $("#carddata" + numtab).show();
         } else {
             $("#headerdatapasien" + numtab).show();
             $("#isidatapasien" + numtab).show();
-            $("#headerreservasi" + numtab).hide();
-            $("#isireservasi" + numtab).hide();
+            $("#headerregonline" + numtab).hide();
+            $("#isiregonline" + numtab).hide();
             $("#pasienbaru" + numtab).show();
             $("#carddata" + numtab).show();
             $("#pasienlama" + numtab).hide();
@@ -1311,8 +1311,8 @@
                 // $("#pasienlama" + numtab).hide();
                 // $("#btnlanjutcarabayar").show();
                 // $("#carabayar").show();
-                // $("#headerreservasi" + numtab).hide();
-                // $("#isireservasi" + numtab).hide();
+                // $("#headerregonline" + numtab).hide();
+                // $("#isiregonline" + numtab).hide();
                 // $("#headerdatapasien" + numtab).hide();
                 // $("#isidatapasien" + numtab).hide();
                 // $("#cardfooter" + numtab).hide();
@@ -1359,8 +1359,8 @@
             $("#pasienbaru" + numtab).hide();
             $("#headerdatapasien" + numtab).show();
             $("#isidatapasien" + numtab).show();
-            $("#headerreservasi" + numtab).hide();
-            $("#isireservasi" + numtab).hide();
+            $("#headerregonline" + numtab).hide();
+            $("#isiregonline" + numtab).hide();
             $("#btnkembali" + numtab).show();
             $("#btnlanjut" + numtab).show();
             $("#carabayar").hide();
@@ -1370,8 +1370,8 @@
         } else {
             $("#headerdatapasien" + numtab).show();
             $("#isidatapasien" + numtab).show();
-            $("#headerreservasi" + numtab).hide();
-            $("#isireservasi" + numtab).hide();
+            $("#headerregonline" + numtab).hide();
+            $("#isiregonline" + numtab).hide();
             $("#pasienbaru" + numtab).show();
         }
         $("#btnkembali" + numtab).show();
@@ -1419,8 +1419,8 @@
                     // $("#pasienlama" + numtab).hide();
                     // $("#btnlanjutcarabayar").show();
                     // $("#carabayar").show();
-                    // $("#headerreservasi" + numtab).hide();
-                    // $("#isireservasi" + numtab).hide();
+                    // $("#headerregonline" + numtab).hide();
+                    // $("#isiregonline" + numtab).hide();
                     // $("#headerdatapasien" + numtab).hide();
                     // $("#isidatapasien" + numtab).hide();
                     // $("#cardfooter" + numtab).hide();
@@ -1445,8 +1445,8 @@
                 $("#pasienbaru" + numtab).hide();
                 $("#headerdatapasien" + numtab).show();
                 $("#isidatapasien" + numtab).show();
-                $("#headerreservasi" + numtab).hide();
-                $("#isireservasi" + numtab).hide();
+                $("#headerregonline" + numtab).hide();
+                $("#isiregonline" + numtab).hide();
                 $("#btnkembali" + numtab).show();
                 $("#btnlanjut" + numtab).show();
                 $("#carabayar").hide();
@@ -1456,8 +1456,8 @@
             } else {
                 $("#headerdatapasien" + numtab).show();
                 $("#isidatapasien" + numtab).show();
-                $("#headerreservasi" + numtab).hide();
-                $("#isireservasi" + numtab).hide();
+                $("#headerregonline" + numtab).hide();
+                $("#isiregonline" + numtab).hide();
                 $("#pasienbaru" + numtab).show();
             }
             $("#btnkembali" + numtab).show();
@@ -1524,7 +1524,7 @@
                 var nobooking = $('#kodebooking').text();
 
                 $.ajax({
-                    url: "CariReservasi/HapusBooking",
+                    url: "cariregonline/HapusBooking",
                     method: "POST",
                     data: {
                         "nobooking": nobooking
@@ -1617,7 +1617,7 @@
                     LoadingPopup('Mohon Tunggu', 'Sedang Mengirim Data.....');
 
                     $.ajax({
-                        url: "CariReservasi/Cetak",
+                        url: "cariregonline/Cetak",
                         method: "POST",
                         data: {
                             "email": id,
@@ -1729,8 +1729,8 @@
 
         $("#headerdatapasien" + numtab).hide();
         $("#isidatapasien" + numtab).hide();
-        $("#headerreservasi" + numtab).show();
-        $("#isireservasi" + numtab).show();
+        $("#headerregonline" + numtab).show();
+        $("#isiregonline" + numtab).show();
         $("#btnkembali" + numtab).show();
 
     }
@@ -1995,7 +1995,7 @@
 
     function getpropinsi() {
         $.ajax({
-            url: "Reservasi/GetPropinsi",
+            url: "regonline/GetPropinsi",
             method: "POST",
             // async: false,
             dataType: 'json',
@@ -2039,7 +2039,7 @@
         }
 
         $.ajax({
-            url: "Reservasi/GetKota",
+            url: "regonline/GetKota",
             method: "POST",
             data: {
                 "propinsi": id
@@ -2082,7 +2082,7 @@
         }
 
         $.ajax({
-            url: "Reservasi/GetKecamatan",
+            url: "regonline/GetKecamatan",
             method: "POST",
             data: {
                 "kota": id
@@ -2125,7 +2125,7 @@
         }
 
         $.ajax({
-            url: "Reservasi/GetKelurahan",
+            url: "regonline/GetKelurahan",
             method: "POST",
             data: {
                 "kecamatan": id
@@ -2154,7 +2154,7 @@
 
     function GetRujukanAsal() {
         $.ajax({
-            url: "Reservasi/GetRujukanAsal",
+            url: "regonline/GetRujukanAsal",
             method: "POST",
             // async: false,
             dataType: 'json',
@@ -2187,7 +2187,7 @@
 
     function GetPoli(id) {
         $.ajax({
-            url: "Reservasi/GetPoli",
+            url: "regonline/GetPoli",
             method: "POST",
             data: {
                 "tglregistrasi": id
@@ -2220,7 +2220,7 @@
 
     function GetCarabayar() {
         $.ajax({
-            url: "Reservasi/GetCarabayar",
+            url: "regonline/GetCarabayar",
             method: "POST",
             // async: false,
             dataType: 'json',
@@ -2289,7 +2289,7 @@
 
 
         $.ajax({
-            url: "Reservasi/GetPasienLama",
+            url: "regonline/GetPasienLama",
             method: "POST",
             data: {
                 "nocm": nocm,
@@ -2442,7 +2442,7 @@
                 LoadingPopup('Mohon Tunggu', 'Sedang Menyimpan Data.....');
 
                 $.ajax({
-                    url: "Reservasi/SimpanRegistrasi",
+                    url: "regonline/SimpanRegistrasi",
                     method: "POST",
                     data: {
                         "statuspasien": statuspasien,
@@ -2497,8 +2497,8 @@
                             swal.close();
                             var nobooking = data.hasil['kodebooking'];
 
-                            $("#headerreservasi" + numtab).hide();
-                            $("#isireservasi" + numtab).hide();
+                            $("#headerregonline" + numtab).hide();
+                            $("#isiregonline" + numtab).hide();
                             $("#btnkembali" + numtab).hide();
                             $("#btnlanjut" + numtab).hide();
                             $("#sukses" + numtab).show();
@@ -2521,7 +2521,7 @@
                             // LoadingPopup('Mohon Tunggu', 'Sedang Mengirim Bukti Pendaftarakan ke Email.');
                             // kirim bukti registrasi ke email
                             $.ajax({
-                                url: "Reservasi/Cetak",
+                                url: "regonline/Cetak",
                                 method: "POST",
                                 data: {
                                     "email": email,
@@ -2548,8 +2548,8 @@
                                     // message('success', 'Data Berhasil Disimpan.', 'Informasi', false);
                                     // bool = true;
 
-                                    // $("#headerreservasi" + numtab).hide();
-                                    // $("#isireservasi" + numtab).hide();
+                                    // $("#headerregonline" + numtab).hide();
+                                    // $("#isiregonline" + numtab).hide();
                                     // $("#btnkembali" + numtab).hide();
                                     // $("#btnlanjut" + numtab).hide();
                                     // $("#sukses" + numtab).show();

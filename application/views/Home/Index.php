@@ -216,7 +216,7 @@
                     <p class="lead text-justify">Proses pendaftaran pemeriksaan rawat jalan melalui pendaftaran online sebagai berikut.</p>
                     <ol class="text-justify">
                         <li>Pendaftar menyiapkan berkas-berkas yang dibutuhkan sesuai dengan carabayar yang akan digunakan.</a></li>
-                        <li>Pendaftar mengisi form pendaftaran online <a href="Reservasi">disini</a> sesuai dengan data yang sebenarnya. Jika pendaftaran berhasil maka pendaftar akan mendapatkan bukti pendaftaran online.</li>
+                        <li>Pendaftar mengisi form pendaftaran online <a href="regonline">disini</a> sesuai dengan data yang sebenarnya. Jika pendaftaran berhasil maka pendaftar akan mendapatkan bukti pendaftaran online.</li>
                         <li>Pendaftar datang ke RSUD Kota Banjar dengan membawa berkas sesuai persyaratan dan menunjukan bukti pendaftaran online. Petugas pendaftaran akan memproses pedaftaran.</li>
                         <li>Pendaftar menuju klinik dan menunggu pemeriksaan dilakukan.</li>
                     </ol>

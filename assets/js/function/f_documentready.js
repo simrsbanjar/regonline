@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    var page = $("[name='reservasi']").val();
+    var page = $("[name='regonline']").val();
     var date = new Date().toDateString("yyyy-MM-dd");
     $("#btnlanjutcarabayar").show();
     
@@ -28,8 +28,8 @@ $(document).ready(function () {
         $("#daftar").hide();
         var html = '';
         html += '<li><a href="Home"><i class="fas fa-home"></i> Home</a></li>';
-        html += '<li><a href="CariReservasi"><i class="fas fa-search"></i> Cari</a></li>';
-        html += '<li class="active"><a href="Reservasi"><i class="fas fa-clipboard-list"></i> Daftar</a></li>';
+        html += '<li><a href="cariregonline"><i class="fas fa-search"></i> Cari</a></li>';
+        html += '<li class="active"><a href="regonline"><i class="fas fa-clipboard-list"></i> Daftar</a></li>';
         $('#myList').html(html);
         GetHariLibur('1');
         hidetab1();
@@ -44,8 +44,8 @@ $(document).ready(function () {
         $("#daftar").hide();
         var html = '';
         html += '<li><a href="Home"><i class="fas fa-home"></i> Home</a></li>';
-        html += '<li class="active"><a href="CariReservasi"><i class="fas fa-search"></i> Cari</a></li>';
-        html += '<li><a href="Reservasi"><i class="fas fa-clipboard-list"></i> Daftar</a></li>';
+        html += '<li class="active"><a href="cariregonline"><i class="fas fa-search"></i> Cari</a></li>';
+        html += '<li><a href="regonline"><i class="fas fa-clipboard-list"></i> Daftar</a></li>';
         $('#myList').html(html);
         GetHariLibur('0');
     }

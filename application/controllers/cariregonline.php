@@ -2,11 +2,11 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class CariReservasi extends CI_Controller
+class cariregonline extends CI_Controller
 {
     public function index()
     {
-        $this->load->view('CariReservasi');
+        $this->load->view('cariregonline');
     }
 
     function __construct()

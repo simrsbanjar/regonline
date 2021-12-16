@@ -8,7 +8,7 @@
 
         <nav class="nav-menu d-none d-lg-block mr-auto">
             <ul id="myList">
-                <!-- <li><a href="CariReservasi"><i class="fas fa-search"></i> Cariiiii</a></li> -->
+                <!-- <li><a href="cariregonline"><i class="fas fa-search"></i> Cariiiii</a></li> -->
                 <!-- di set di javasvript karena apabila klik daftar maka akan muncul menu yg beda-->
 
                 <!-- // var_dump($name);
@@ -40,14 +40,14 @@
                 <?php } elseif ($data == '2') { ?>
                     <!-- daftar -->
                     <li><a href="Home"><i class="fas fa-home"></i> Home</a></li>
-                    <li><a href="CariReservasi"><i class="fas fa-search"></i> Cari</a></li>
-                    <li class="active"><a href="Reservasi"><i class="fas fa-clipboard-list"></i> Daftar</a></li>
+                    <li><a href="cariregonline"><i class="fas fa-search"></i> Cari</a></li>
+                    <li class="active"><a href="regonline"><i class="fas fa-clipboard-list"></i> Daftar</a></li>
 
                 <?php } else { ?>
                     <!-- cari -->
                     <li><a href="Home"><i class="fas fa-home"></i> Home</a></li>
-                    <li class="active"><a href="CariReservasi"><i class="fas fa-search"></i> Cari</a></li>
-                    <li><a href="Reservasi"><i class="fas fa-clipboard-list"></i> Daftar</a></li>
+                    <li class="active"><a href="cariregonline"><i class="fas fa-search"></i> Cari</a></li>
+                    <li><a href="regonline"><i class="fas fa-clipboard-list"></i> Daftar</a></li>
                 <?php } ?>
 
 
@@ -56,7 +56,7 @@
 
         <!-- .nav-menu -->
 
-        <a href="<?= base_url('Reservasi'); ?>" class="appointment-btn scrollto" id="daftar">Daftar / Cari Pasien</a>
+        <a href="<?= base_url('regonline'); ?>" class="appointment-btn scrollto" id="daftar">Daftar / Cari Pasien</a>
 
     </div>
 </header><!-- End Header -->

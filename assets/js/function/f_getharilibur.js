@@ -2,7 +2,7 @@ function GetHariLibur(menu) {
     var hasil = '';
     var jumlah = 0;
     $.ajax({
-        url: "Reservasi/GetHariLibur",
+        url: "regonline/GetHariLibur",
         data: {
             "jumlahhari": 7 + daycount()
         },

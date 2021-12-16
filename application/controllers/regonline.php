@@ -2,11 +2,11 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Reservasi extends CI_Controller
+class regonline extends CI_Controller
 {
     public function index()
     {
-        $this->load->view('Reservasi');
+        $this->load->view('regonline');
     }
 
     function __construct()
