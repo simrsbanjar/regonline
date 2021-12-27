@@ -23,8 +23,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'https://regonline.rsukotabanjar.co.id/';
-//$config['base_url'] = 'https://172.16.0.109/regonline/';
+//$config['base_url'] = 'https://regonline.rsukotabanjar.co.id/';
+$config['base_url'] = 'https://localhost/regonline/';
 
 /*
 |--------------------------------------------------------------------------
