@@ -2,7 +2,7 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class regonline extends CI_Controller
+class Regonline extends CI_Controller
 {
     public function index()
     {
@@ -12,7 +12,7 @@ class regonline extends CI_Controller
     function __construct()
     {
         parent::__construct();
-         $this->API = "http://simrs.rsukotabanjar.co.id/wg-rsubanjar";
+         $this->API = "https://simrs.rsukotabanjar.co.id/wg-rsubanjar";
         // $this->API = "http://172.16.0.3/wg-rsubanjar";
         // $this->API = "http://172.16.0.3/wg-rsubanjar_dani";
         // $this->API = "http://localhost/wg-rsubanjar";
@@ -58,7 +58,7 @@ class regonline extends CI_Controller
             'password'      =>  'rsu@b4nj4r'
         );
 
-        $hasil = json_decode($this->curl->simple_post($this->API . '/gettoken', $parm, array(CURLOPT_BUFFERSIZE => 10)));
+        $hasil = json_decode($this->curl->simple_post($this->API . '/gettoken', $parm, array(CURLOPT_BUFFERSIZE => 10,CURLOPT_SSL_VERIFYHOST => 0, CURLOPT_SSL_VERIFYPEER => 0)));
         $response = $hasil->response;
         $metadata = $hasil->metadata;
 
@@ -93,6 +93,9 @@ class regonline extends CI_Controller
 
         /* set return type json */
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 
         /* execute request */
         $result = curl_exec($ch);
@@ -142,6 +145,9 @@ class regonline extends CI_Controller
 
         /* set return type json */
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 
         /* execute request */
         $result = curl_exec($ch);
@@ -194,6 +200,9 @@ class regonline extends CI_Controller
         /* set return type json */
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+
         /* execute request */
         $result = curl_exec($ch);
 
@@ -242,6 +251,9 @@ class regonline extends CI_Controller
 
         /* set return type json */
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 
         /* execute request */
         $result = curl_exec($ch);
@@ -292,6 +304,9 @@ class regonline extends CI_Controller
         /* set return type json */
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+
         /* execute request */
         $result = curl_exec($ch);
 
@@ -313,12 +328,16 @@ class regonline extends CI_Controller
                 'NamaKelurahan' => $line->Nama
             );
         }
+
+
         echo json_encode($data);
     }
 
     function GetPoli()
     {
         $tglregistrasi = date('Y-m-d', strtotime($this->input->post('tglregistrasi')));
+        //var_dump($tglregistrasi);
+
         $token     =  $this->GetToken();
         $url = $this->API . '/getlistpoli';
         $headers = array(
@@ -339,6 +358,9 @@ class regonline extends CI_Controller
 
         /* set return type json */
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 
         /* execute request */
         $result = curl_exec($ch);
@@ -387,6 +409,9 @@ class regonline extends CI_Controller
 
         /* set return type json */
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 
         /* execute request */
         $result = curl_exec($ch);
@@ -451,6 +476,9 @@ class regonline extends CI_Controller
 
         /* set return type json */
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 
         /* execute request */
         $result = curl_exec($ch);
@@ -581,6 +609,9 @@ class regonline extends CI_Controller
 
         /* set return type json */
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 
         /* execute request */
         $result = curl_exec($ch);
@@ -830,6 +861,9 @@ class regonline extends CI_Controller
         /* set return type json */
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+
         /* execute request */
         $result = curl_exec($ch);
 
@@ -897,6 +931,9 @@ class regonline extends CI_Controller
         /* set return type json */
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+
         /* execute request */
         $result = curl_exec($ch);
 
@@ -942,13 +979,25 @@ class regonline extends CI_Controller
     function GetHariLibur()
     {
         $jumlahhari = $this->input->post('jumlahhari');
-       
-        // $jumlahhari     = 30;
+        
+		$arrContextOptions=array(
+								"ssl"=>array(
+									"verify_peer"=>false,
+									"verify_peer_name"=>false,
+								),
+							); 
 
-        // date_default_timezone_set("Asia/Jakarta");
+        // $jumlahhari     = 30;
+		
+		$array  = json_decode(file_get_contents("https://www.googleapis.com/calendar/v3/calendars/id.indonesian.official%23holiday%40group.v.calendar.google.com/events?key=AIzaSyC3Bcn-hLwhY_lhffxKLvFjIT7vwhLKqu8",false, stream_context_create($arrContextOptions)),true);
+		
+		
+		// date_default_timezone_set("Asia/Jakarta");
         // $array = json_decode(file_get_contents("https://raw.githubusercontent.com/guangrei/Json-Indonesia-holidays/master/calendar.json"), true);
-        $array = json_decode(file_get_contents("https://www.googleapis.com/calendar/v3/calendars/id.indonesian.official%23holiday%40group.v.calendar.google.com/events?key=AIzaSyC3Bcn-hLwhY_lhffxKLvFjIT7vwhLKqu8"), true);
-        // var_dump(count($array["items"]));
+        
+		//$array = json_decode(file_get_contents("https://www.googleapis.com/calendar/v3/calendars/id.indonesian.official%23holiday%40group.v.calendar.google.com/events?key=AIzaSyC3Bcn-hLwhY_lhffxKLvFjIT7vwhLKqu8"), true);
+        
+		 //var_dump($array["items"]);
         // var_dump($array["items"][0]["start"]["date"]);
         // var_dump(array_search('2020-08-17', array_column($array["items"][1], 'date')));
         

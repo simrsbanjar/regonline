@@ -40,7 +40,7 @@
 
         <div>
             <div>
-                <p style="margin-bottom: 0px;">Nomer Antrian Anda</p>
+                <p style="margin-bottom: 0px;">Nomor Antrian Anda</p>
             </div>
             <div>
                 <p style="font-weight: bold; font-size: 75px; line-height: 80px; margin-bottom: 0px;"><?= $cetak['nomorantrean'] ?></p>
@@ -98,13 +98,17 @@
         </tr>
         <!-- tutup tr statuspasien -->
 
+        <br>
+        <br style="line-height: 25px;">
+
+
         <div>
             <img src="<?= base_url() . 'assets/img/qrcode/' . $cetak['kodebooking'] . '.png' ?>" alt="logo qrcode" style="padding-bottom: 0px; line-height: 0px;">
         </div>
         <!-- tutup div gambar barcode -->
 
         <div>
-            <p style="font-size: 25px; font-weight: bold; margin-bottom: 0px; line-height: 0px;"><?= $cetak['kodebooking'] . date('dmY', strtotime($cetak['estimasidilayani'])) ?></p>
+            <p style="font-size: 23px; font-weight: bold; margin-bottom: 0px; line-height: 0px;"><?= $cetak['kodebooking'] . date('dmY', strtotime($cetak['estimasidilayani'])) ?></p>
         </div>
         <!-- tutup kode booking -->
 

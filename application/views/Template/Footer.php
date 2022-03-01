@@ -832,7 +832,7 @@
         } else {
             $('input:radio[name=flexRadioDefault3][id=flexRadioDefault5]').click();
         }
-        GetPoli("<?= date("Y-m-d") ?>");
+        GetPoli(daystarttgl());
 
         setSuccessFor(document.getElementById('norm' + numtab));
         setSuccessFor(document.getElementById("gelar" + numtab));
@@ -1099,7 +1099,7 @@
                                     message('error', 'Server gangguan, silahkan ulangi kembali.', 'Peringatan', false);
                                 }
                             });
-
+ 
                             // unlink('assets/pdf/' . $nobooking . '.pdf');
 
                             // setInterval(unlink('assets/img/qrcode/' + nobooking + '.png'), 100);
