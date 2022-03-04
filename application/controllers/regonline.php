@@ -336,7 +336,7 @@ class Regonline extends CI_Controller
     function GetPoli()
     {
         $tglregistrasi = date('Y-m-d', strtotime($this->input->post('tglregistrasi')));
-        //var_dump($tglregistrasi);
+        // var_dump($tglregistrasi);
 
         $token     =  $this->GetToken();
         $url = $this->API . '/getlistpoli';

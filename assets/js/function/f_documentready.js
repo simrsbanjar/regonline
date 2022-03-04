@@ -38,7 +38,7 @@ $(document).ready(function () {
         daycount();
         getpropinsi();
         GetRujukanAsal();
-        GetPoli(date);
+        GetPoli(daystarttgl());
         GetCarabayar();
     } else {
         $("#daftar").hide();
