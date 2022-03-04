@@ -115,7 +115,14 @@
         <br>
 
         <div style="line-height: 5px;">
-            <p>Mohon datang <b>30 menit</b> sebelumnya </p>
+            <p><?php 
+                if ($cetak['statuspasien']  == 'Lama') {
+                    echo 'Mohon datang <b>30 menit</b> sebelumnya'; 
+                }else {
+                    echo 'Mohon datang <b>60 menit</b> lebih awal guna pencatatan administrasi'; 
+                }
+            ?></p>
+
             <p>Jika terlambat antrian tidak berlaku lagi</p>
             <p style="font-weight: bold;">!!! Bawalah tanda bukti ini untuk verifikasi di pendaftaran !!! </p>
         </div>
