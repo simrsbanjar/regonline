@@ -2062,12 +2062,25 @@ class CI_Email {
 
 		$ssl = ($this->smtp_crypto === 'ssl') ? 'ssl://' : '';
 
-		$this->_smtp_connect = fsockopen($ssl.$this->smtp_host,
+		/* $this->_smtp_connect = fsockopen($ssl.$this->smtp_host,
 							$this->smtp_port,
 							$errno,
 							$errstr,
 							$this->smtp_timeout);
-
+ */
+		$context = stream_context_create([
+            'ssl' => [
+                'verify_peer' => false,
+                'verify_peer_name' => false
+            ]
+        ]);
+							
+		$this->_smtp_connect = stream_socket_client($ssl.$this->smtp_host . ':' 
+                                        . $this->smtp_port,
+                                        $errno,
+                                        $errstr,
+                                        $this->smtp_timeout,STREAM_CLIENT_CONNECT, $context);
+										
 		if ( ! is_resource($this->_smtp_connect))
 		{
 			$this->_set_error_message('lang:email_smtp_error', $errno.' '.$errstr);
@@ -2101,8 +2114,12 @@ class CI_Email {
 				$this->_set_error_message('lang:email_smtp_error', $this->_get_smtp_data());
 				return FALSE;
 			}
+			
+			if( strpos( $this->smtp_host, 'ssl://') === FALSE ) {
+			  stream_socket_enable_crypto($this->_smtp_connect, TRUE, STREAM_CRYPTO_METHOD_TLS_CLIENT);
+			}
 		}
-
+		
 		return $this->_send_command('hello');
 	}
 

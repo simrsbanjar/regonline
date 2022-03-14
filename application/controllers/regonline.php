@@ -673,7 +673,7 @@ class Regonline extends CI_Controller
     function SendMail($email, $subject, $mesage, $filedata)
     {
         // configurasi library email
-        $config = [
+        /* $config = [
             'protocol'  => 'smtp',
             'smtp_host' => 'ssl://rsukotabanjar.co.id',
             'smtp_user' => 'regonline@rsukotabanjar.co.id',
@@ -682,14 +682,24 @@ class Regonline extends CI_Controller
             'mailtype'  => 'html',
             'charset'   => 'utf-8',
             'newline'   => "\r\n"
+        ]; */
+		
+		$config = [
+            'protocol'  => 'smtp',
+            'smtp_host' => 'ssl://smtp.gmail.com',
+            'smtp_user' => 'simrsrsukotabanjar@gmail.com',
+            'smtp_pass' => 'Simrs321',
+            'smtp_port' => 465,
+            'mailtype'  => 'html',
+            'charset'   => 'utf-8',
+            'newline'   => "\r\n"
         ];
-
 
         $this->load->library('email', $config);
         $this->email->initialize($config);
 
         // send email
-        $this->email->from('regonline@rsukotabanjar.co.id', 'RSU BANJAR REGISTRASI ONLINE');
+        $this->email->from('simrsrsukotabanjar@gmail.com', 'RSU BANJAR REGISTRASI ONLINE');
         $this->email->to($email);
         $this->email->subject($subject);
         $this->email->message($mesage);
