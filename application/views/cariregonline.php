@@ -159,6 +159,18 @@
                             <dd id="email">-</dd>
                         </dl>
                     </div>
+                    <div class=" col-lg-4 col-7 col-sm-6 col-md-5" hidden>
+                        <dl>
+                            <dt>Status Pasien</dt>
+                            <dd id="namapasien">-</dd>
+                        </dl>
+                    </div>
+                    <div class=" col-lg-4 col-7 col-sm-6 col-md-5" hidden>
+                        <dl>
+                            <dt>Status Pasien</dt>
+                            <dd id="tgllahirpasien">-</dd>
+                        </dl>
+                    </div>
                 </div>
 
                 <div class="d-flex justify-content-end card-footer">

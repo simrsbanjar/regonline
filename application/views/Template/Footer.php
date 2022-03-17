@@ -776,7 +776,7 @@
     //     // }, 100);
     //     // $('#loading').fadeOut();
     // }
-
+    
     function bersihkan(tab) {
         var numtab = '';
         var setvalue = '';
@@ -1052,69 +1052,173 @@
             cancelButtonText: 'Tidak'
         }).then((result) => {
             if (result.value) {
-                // jika  berhasil simpan maka munculkan cetakan hasil booking, jika gagal booking maka diam di page tersebut.   
-                LoadingPopup('Mohon Tunggu', 'Sedang Mengunduh Data.....');
 
-                $.ajax({
-                    url: "cariregonline/Cetak",
-                    method: "POST",
-                    data: {
-                        "email": id,
-                        "kodebookingval": nobooking,
-                        "nopendaftaranval": noreg,
-                        "nocmval": norm,
-                        "nomorantreanval": noantrian,
-                        "jenisantreanval": jenisantrian,
-                        "estimasidilayanival": estimasidilayani,
-                        "namapolival": politujuan,
-                        "namadokterval": doktertujuan,
-                        "statuspasienval": statuspasien,
-                        "idcetak": '2'
-                    },
-                    dataType: 'json',
-                    success: function(data) {
-                        swal.close();
-                        if (data.hasil['code'] != '200') {
-                            message('info', data.hasil['message'], 'Informasi', false);
-                        } else {
-                            a[0].click();
-                            a.remove();
-
+                if (source == '1') {
+                    var namapasien = $('#namapasien').text();
+                    var tgllahirpasien = $('#tgllahirpasien').text();
+                    
+                    let flatpickrInstance
+                    Swal.fire({
+                        title: 'Verifikasi Data',
+                        html:   '<input class="swal2-input" id="namalengkapvalid" placeholder="Nama Lengkap Pasien">'+'<input class="swal2-input" id="tgllahirvalid" placeholder="Tgl. Lahir Pasien">',
+                        stopKeydownPropagation: false,
+                        showCancelButton: true,
+                        focusConfirm: false,
+                        preConfirm: () => {
+                            if (flatpickrInstance.selectedDates[0] > new Date()) {
+                                Swal.showValidationMessage('Tgl.Lahir tidak boleh lebih bisar dari hari ini')
+                            }
+    
+                            const namalengkap = Swal.getPopup().querySelector('#namalengkapvalid').value
+                            const tgllahir = Swal.getPopup().querySelector('#tgllahirvalid').value
+                            
+                            if (!tgllahir) {
+                                Swal.showValidationMessage('Tanggal Lahir Pasien Tidak Boleh Kosong.')
+                            }
+                            if (!namalengkap) {
+                                Swal.showValidationMessage('Nama Pasien Tidak Boleh Kosong.')
+                            }
+    
+                            return {namalengkap: namalengkap, tgllahir: tgllahir }
+                            
+                        },
+                        willOpen: () => {
+                            flatpickrInstance = flatpickr(
+                            Swal.getPopup().querySelector('#tgllahirvalid')
+                            )
+                        }
+                    }).then((result) => {
+                        if (namapasien.toUpperCase().trim() == result.value.namalengkap.toUpperCase().trim() && tgllahirpasien == result.value.tgllahir){
+                            // jika  berhasil simpan maka munculkan cetakan hasil booking, jika gagal booking maka diam di page tersebut.   
+                            LoadingPopup('Mohon Tunggu', 'Sedang Mengunduh Data.....');
+    
                             $.ajax({
-                                url: "cariregonline/RemoveFile",
+                                url: "cariregonline/Cetak",
                                 method: "POST",
                                 data: {
-                                    "kodebooking": nobooking
+                                    "email": id,
+                                    "kodebookingval": nobooking,
+                                    "nopendaftaranval": noreg,
+                                    "nocmval": norm,
+                                    "nomorantreanval": noantrian,
+                                    "jenisantreanval": jenisantrian,
+                                    "estimasidilayanival": estimasidilayani,
+                                    "namapolival": politujuan,
+                                    "namadokterval": doktertujuan,
+                                    "statuspasienval": statuspasien,
+                                    "idcetak": '2'
                                 },
                                 dataType: 'json',
                                 success: function(data) {
                                     swal.close();
                                     if (data.hasil['code'] != '200') {
                                         message('info', data.hasil['message'], 'Informasi', false);
+                                    } else {
+                                        a[0].click();
+                                        a.remove();
+    
+                                        $.ajax({
+                                            url: "cariregonline/RemoveFile",
+                                            method: "POST",
+                                            data: {
+                                                "kodebooking": nobooking
+                                            },
+                                            dataType: 'json',
+                                            success: function(data) {
+                                                swal.close();
+                                                if (data.hasil['code'] != '200') {
+                                                    message('info', data.hasil['message'], 'Informasi', false);
+                                                }
+    
+                                            },
+                                            error: function() {
+                                                swal.close();
+                                                message('error', 'Server gangguan, silahkan ulangi kembali.', 'Peringatan', false);
+                                            }
+                                        });
+            
+                                        // unlink('assets/pdf/' . $nobooking . '.pdf');
+    
+                                        // setInterval(unlink('assets/img/qrcode/' + nobooking + '.png'), 100);
+                                        // setInterval(unlink('assets/pdf/' + nobooking) + '.pdf', 100);
+    
+    
+                                        // message('success', data.hasil['message'], 'Informasi', false);
                                     }
-
+    
                                 },
                                 error: function() {
                                     swal.close();
                                     message('error', 'Server gangguan, silahkan ulangi kembali.', 'Peringatan', false);
                                 }
                             });
- 
-                            // unlink('assets/pdf/' . $nobooking . '.pdf');
-
-                            // setInterval(unlink('assets/img/qrcode/' + nobooking + '.png'), 100);
-                            // setInterval(unlink('assets/pdf/' + nobooking) + '.pdf', 100);
-
-
-                            // message('success', data.hasil['message'], 'Informasi', false);
+                        }else {
+                            message('warning', 'Verifikasi Data Gagal Karena Data Pasien Tidak Sesuai.', 'Informasi', false);
                         }
+                    })
+                }else {
+                    LoadingPopup('Mohon Tunggu', 'Sedang Mengunduh Data.....');
+                    $.ajax({
+                        url: "cariregonline/Cetak",
+                        method: "POST",
+                        data: {
+                            "email": id,
+                            "kodebookingval": nobooking,
+                            "nopendaftaranval": noreg,
+                            "nocmval": norm,
+                            "nomorantreanval": noantrian,
+                            "jenisantreanval": jenisantrian,
+                            "estimasidilayanival": estimasidilayani,
+                            "namapolival": politujuan,
+                            "namadokterval": doktertujuan,
+                            "statuspasienval": statuspasien,
+                            "idcetak": '2'
+                        },
+                        dataType: 'json',
+                        success: function(data) {
+                            swal.close();
+                            if (data.hasil['code'] != '200') {
+                                message('info', data.hasil['message'], 'Informasi', false);
+                            } else {
+                                a[0].click();
+                                a.remove();
 
-                    },
-                    error: function() {
-                        swal.close();
-                        message('error', 'Server gangguan, silahkan ulangi kembali.', 'Peringatan', false);
-                    }
-                });
+                                $.ajax({
+                                    url: "cariregonline/RemoveFile",
+                                    method: "POST",
+                                    data: {
+                                        "kodebooking": nobooking
+                                    },
+                                    dataType: 'json',
+                                    success: function(data) {
+                                        swal.close();
+                                        if (data.hasil['code'] != '200') {
+                                            message('info', data.hasil['message'], 'Informasi', false);
+                                        }
+
+                                    },
+                                    error: function() {
+                                        swal.close();
+                                        message('error', 'Server gangguan, silahkan ulangi kembali.', 'Peringatan', false);
+                                    }
+                                });
+    
+                                // unlink('assets/pdf/' . $nobooking . '.pdf');
+
+                                // setInterval(unlink('assets/img/qrcode/' + nobooking + '.png'), 100);
+                                // setInterval(unlink('assets/pdf/' + nobooking) + '.pdf', 100);
+
+
+                                // message('success', data.hasil['message'], 'Informasi', false);
+                            }
+
+                        },
+                        error: function() {
+                            swal.close();
+                            message('error', 'Server gangguan, silahkan ulangi kembali.', 'Peringatan', false);
+                        }
+                    });
+                }
             } else {
                 // jika klik batal
             }
@@ -1173,6 +1277,8 @@
                         $('#doktertujuan').text('-');
                         $('#statuspasien').text('-');
                         $('#email').text('-');
+                        $('#namapasien').text('-');
+                        $('#tgllahirpasien').text('-');
                         $("#btnhapus").attr("disabled", true);
                         $("#btncetak").attr("disabled", true);
                         $("#btnunduh").attr("disabled", true);
@@ -1192,6 +1298,8 @@
                         $('#doktertujuan').text(data.hasil['namadokter']);
                         $('#statuspasien').text(data.hasil['statuspasien']);
                         $('#email').text(data.hasil['email']);
+                        $('#namapasien').text(data.hasil['namapasien']);
+                        $('#tgllahirpasien').text(data.hasil['tgllahir']);
 
                         $("#btnhapus").attr("disabled", false);
                         $("#btncetak").attr("disabled", false);
@@ -1215,6 +1323,9 @@
                     $('#doktertujuan').text('-');
                     $('#statuspasien').text('-');
                     $('#email').text('-');
+                    $('#namapasien').text('-');
+                    $('#tgllahirpasien').text('-');
+
                     $("#btnhapus").attr("disabled", true);
                     $("#btncetak").attr("disabled", true);
                     $("#btnunduh").attr("disabled", true);
@@ -1522,42 +1633,84 @@
         }).then((result) => {
             if (result.value) {
                 var nobooking = $('#kodebooking').text();
-
-                $.ajax({
-                    url: "cariregonline/HapusBooking",
-                    method: "POST",
-                    data: {
-                        "nobooking": nobooking
-                    },
-                    // async: false,
-                    dataType: 'json',
-                    success: function(data) {
-                        if (data.codedata['code'] != '200') {
-                            message('info', data.codedata['message'], 'Informasi', false);
-                        } else {
-                            message('success', data.hasil, 'Informasi', false);
-
-                            $('#kodebooking').text('-');
-                            $('#noreg').text('-');
-                            $('#norm').text('-');
-                            $('#noantrian').text('-');
-                            $('#jenisantrian').text('-');
-                            $('#estimasidilayani').text('-');
-                            $('#politujuan').text('-');
-                            $('#doktertujuan').text('-');
-                            $('#statuspasien').text('-');
-                            $("#btnhapus").attr("disabled", true);
-                            $("#btncetak").attr("disabled", true);
-                            $("#btnunduh").attr("disabled", true);
-
-                            document.getElementById("nopendaftaran").value = "";
+                var namapasien = $('#namapasien').text();
+                var tgllahirpasien = $('#tgllahirpasien').text();
+                
+                let flatpickrInstance
+                Swal.fire({
+                    title: 'Verifikasi Data',
+                    html:   '<input class="swal2-input" id="namalengkapvalid" placeholder="Nama Lengkap Pasien">'+'<input class="swal2-input" id="tgllahirvalid" placeholder="Tgl. Lahir Pasien">',
+                    stopKeydownPropagation: false,
+                    showCancelButton: true,
+                    focusConfirm: false,
+                    preConfirm: () => {
+                        if (flatpickrInstance.selectedDates[0] > new Date()) {
+                            Swal.showValidationMessage('Tgl.Lahir tidak boleh lebih bisar dari hari ini')
                         }
 
+                        const namalengkap = Swal.getPopup().querySelector('#namalengkapvalid').value
+                        const tgllahir = Swal.getPopup().querySelector('#tgllahirvalid').value
+                        
+                        if (!tgllahir) {
+                            Swal.showValidationMessage('Tanggal Lahir Pasien Tidak Boleh Kosong.')
+                        }
+                        if (!namalengkap) {
+                            Swal.showValidationMessage('Nama Pasien Tidak Boleh Kosong.')
+                        }
+
+                        return {namalengkap: namalengkap, tgllahir: tgllahir }
+                        
                     },
-                    error: function() {
-                        message('error', 'Server gangguan, silahkan ulangi kembali.', 'Peringatan', false);
+                    willOpen: () => {
+                        flatpickrInstance = flatpickr(
+                        Swal.getPopup().querySelector('#tgllahirvalid')
+                        )
                     }
-                });
+                }).then((result) => {
+                    if (namapasien.toUpperCase().trim() == result.value.namalengkap.toUpperCase().trim() && tgllahirpasien == result.value.tgllahir){
+                        LoadingPopup('Mohon Tunggu', 'Sedang Menghapus Data.....');
+                        $.ajax({
+                            url: "cariregonline/HapusBooking",
+                            method: "POST",
+                            data: {
+                                "nobooking": nobooking
+                            },
+                            // async: false,
+                            dataType: 'json',
+                            success: function(data) {
+                                if (data.codedata['code'] != '200') {
+                                    swal.close();
+                                    message('info', data.codedata['message'], 'Informasi', false);
+                                } else {
+                                    swal.close();
+                                    message('success', data.hasil, 'Informasi', false);
+
+                                    $('#kodebooking').text('-');
+                                    $('#noreg').text('-');
+                                    $('#norm').text('-');
+                                    $('#noantrian').text('-');
+                                    $('#jenisantrian').text('-');
+                                    $('#estimasidilayani').text('-');
+                                    $('#politujuan').text('-');
+                                    $('#doktertujuan').text('-');
+                                    $('#statuspasien').text('-');
+                                    $("#btnhapus").attr("disabled", true);
+                                    $("#btncetak").attr("disabled", true);
+                                    $("#btnunduh").attr("disabled", true);
+
+                                    document.getElementById("nopendaftaran").value = "";
+                                }
+
+                            },
+                            error: function() {
+                                swal.close();
+                                message('error', 'Server gangguan, silahkan ulangi kembali.', 'Peringatan', false);
+                            }
+                        });
+                    }else {
+                        message('warning', 'Verifikasi Data Gagal Karena Data Pasien Tidak Sesuai.', 'Informasi', false);
+                    }
+                })
             } else {
                 // document.getElementById("nilai").value = Number(hasilnum) - 1;
             }
@@ -1613,40 +1766,66 @@
                 cancelButtonText: 'Tidak'
             }).then((result) => {
                 if (result.value) {
-                    // jika  berhasil simpan maka munculkan cetakan hasil booking, jika gagal booking maka diam di page tersebut.   
-                    LoadingPopup('Mohon Tunggu', 'Sedang Mengirim Data.....');
-
-                    $.ajax({
-                        url: "cariregonline/Cetak",
-                        method: "POST",
-                        data: {
-                            "email": id,
-                            "kodebookingval": nobooking,
-                            "nopendaftaranval": noreg,
-                            "nocmval": norm,
-                            "nomorantreanval": noantrian,
-                            "jenisantreanval": jenisantrian,
-                            "estimasidilayanival": estimasidilayani,
-                            "namapolival": politujuan,
-                            "namadokterval": doktertujuan,
-                            "statuspasienval": statuspasien,
-                            "idcetak": '1'
-                        },
-                        dataType: 'json',
-                        success: function(data) {
-                            swal.close();
-                            if (data.hasil['code'] != '200') {
-                                message('info', data.hasil['message'], 'Informasi', false);
-                            } else {
-                                message('success', data.hasil['message'], 'Informasi', false);
+                    var email = $('#email').text();
+                    
+                    let flatpickrInstance
+                    Swal.fire({
+                        title: 'Verifikasi Data',
+                        html:   '<input class="swal2-input" id="emailvalid" placeholder="Email">',
+                        stopKeydownPropagation: false,
+                        showCancelButton: true,
+                        focusConfirm: false,
+                        preConfirm: () => {
+                            const email = Swal.getPopup().querySelector('#emailvalid').value
+                            
+                            if (!email) {
+                                Swal.showValidationMessage('Email Tidak Boleh Kosong.')
                             }
-
-                        },
-                        error: function() {
-                            swal.close();
-                            message('error', 'Server gangguan, silahkan ulangi kembali.', 'Peringatan', false);
+    
+                            return {email: email}
+                            
                         }
-                    });
+                    }).then((result) => {
+                        if (email.toUpperCase().trim() == result.value.email.toUpperCase().trim()){
+                            // jika  berhasil simpan maka munculkan cetakan hasil booking, jika gagal booking maka diam di page tersebut.   
+                            LoadingPopup('Mohon Tunggu', 'Sedang Mengirim Data.....');
+
+                            $.ajax({
+                                url: "cariregonline/Cetak",
+                                method: "POST",
+                                data: {
+                                    "email": id,
+                                    "kodebookingval": nobooking,
+                                    "nopendaftaranval": noreg,
+                                    "nocmval": norm,
+                                    "nomorantreanval": noantrian,
+                                    "jenisantreanval": jenisantrian,
+                                    "estimasidilayanival": estimasidilayani,
+                                    "namapolival": politujuan,
+                                    "namadokterval": doktertujuan,
+                                    "statuspasienval": statuspasien,
+                                    "idcetak": '1'
+                                },
+                                dataType: 'json',
+                                success: function(data) {
+                                    swal.close();
+                                    if (data.hasil['code'] != '200') {
+                                        message('info', data.hasil['message'], 'Informasi', false);
+                                    } else {
+                                        message('success', data.hasil['message'], 'Informasi', false);
+                                    }
+
+                                },
+                                error: function() {
+                                    swal.close();
+                                    message('error', 'Server gangguan, silahkan ulangi kembali.', 'Peringatan', false);
+                                }
+                            });
+                        }else {
+                            message('warning', 'Verifikasi Data Gagal Karena Data Pasien Tidak Sesuai.', 'Informasi', false);
+                        }
+                    })
+
                 } else {
                     // jika klik batal
                 }

@@ -104,7 +104,9 @@ class Cariregonline extends CI_Controller
                 'namadokter' => $response->namadokter,
                 'nocm' => $response->nocm,
                 'statuspasien' => $response->statuspasien,
-                'email' => $response->email
+                'email' => $response->email,
+                'namapasien' => $response->namalengkap,
+                'tgllahir' => $response->tgllahir
             );
         }
 
@@ -156,6 +158,7 @@ class Cariregonline extends CI_Controller
 
         if ($metadata->code == '200') {
             $estimasidilayani   = $this->time_convert($response->estimasidilayani);
+            // $tgllahir   = $this->time_convert($response->tgllahir);
             if ($response->jenisantrean == '1') {
                 $jenisantrian = 'Antrian Registrasi';
             } else {
@@ -171,7 +174,9 @@ class Cariregonline extends CI_Controller
                 'namadokter' => $response->namadokter,
                 'nocm' => $response->nocm,
                 'statuspasien' => $response->statuspasien,
-                'email' => $response->email
+                'email' => $response->email,
+                'namapasien' => $response->namalengkap,
+                'tgllahir' => $response->tgllahir
             );
         }
 
@@ -179,7 +184,7 @@ class Cariregonline extends CI_Controller
             'code' => $metadata->code,
             'message' => $metadata->message
         );
-
+        
         return $data;
     }
 
@@ -241,7 +246,9 @@ class Cariregonline extends CI_Controller
                 'namadokter' => $response->namadokter,
                 'nocm' => $response->nocm,
                 'statuspasien' => $response->statuspasien,
-                'email' => $response->email
+                'email' => $response->email,
+                'namapasien' => $response->namalengkap,
+                'tgllahir' => $response->tgllahir
             );
         }
 
@@ -310,7 +317,9 @@ class Cariregonline extends CI_Controller
                 'namadokter' => $response->namadokter,
                 'nocm' => $response->nocm,
                 'statuspasien' => $response->statuspasien,
-                'email' => $response->email
+                'email' => $response->email,
+                'namapasien' => $response->namalengkap,
+                'tgllahir' => $response->tgllahir
             );
         }
 
