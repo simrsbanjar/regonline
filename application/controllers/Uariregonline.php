@@ -14,7 +14,7 @@ class Cariregonline extends CI_Controller
         parent::__construct();
         $this->API = "https://simrs.rsukotabanjar.co.id/wg-rsubanjar";
         //$this->API = "http://172.16.0.3/wg-rsubanjar";
-        // $this->API = "http://localhost/wg-rsubanjar";
+        // $this->API = "http://localhost/wg-rsubanjar_dani";
         $this->load->library('session');
         $this->load->library('curl');
         $this->load->helper('form');
